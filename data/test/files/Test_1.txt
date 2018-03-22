@@ -1,0 +1,1 @@
+1. Create a CLI utility that takes one or more directory paths as arguments.

@@ -1,0 +1,22 @@
+PRODUCT := patchman.exe
+
+CXX := g++
+LINKER := g++
+INCDIRS := -I./common/h
+CXXFLAGS := -std=c++11 -Wall -Wextra
+
+SRCFILES := $(wildcard ./common/cpp/*.cpp) 
+OBJFILES := $(patsubst %.cpp,%.o,$(SRCFILES))
+DEPFILES := $(patsubst %.cpp,%.d,$(SRCFILES))
+#LDFLAGS = -lsqlite3 -lcurl -lcrypto -lssl
+
+$(PRODUCT): $(OBJFILES)
+    $(LINKER) $^ -o $@
+
+%.o: %.cpp
+    $(CXX) $(CXXFLAGS) $(INCDIRS) -c $< -o $@
+
+%.d: %.cpp
+    $(CXX) $(INCDIRS) -MM $< > $@
+
+-include $(DEPFILES)

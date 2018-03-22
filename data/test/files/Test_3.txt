@@ -1,0 +1,1 @@
+6. Store the information in an sqlite3 database
